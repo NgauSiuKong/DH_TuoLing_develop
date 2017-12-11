@@ -1,0 +1,31 @@
+{extend name="base/base"}
+{block name="css"}
+    <link href="__HOME_STYLE__/css/about.css" rel="stylesheet">
+{/block}
+{block name="content"}
+    <article>
+      <div class="container">
+        <div class="banner">
+          <p data-scroll-reveal="enter top over 2s">
+              <h2>{$blogcontent_info.bloginfo_title}</h2>
+          </p>
+          <p data-scroll-reveal="enter bottom over 2s after 2s">
+              {$blogcontent_info.bloginfo_describe}
+          </p>
+        </div>
+        <div class="about left">
+        <h2>{$blogcontent_info.bloginfo_title}</h2>
+        <ul> 
+            {$blogcontent_info.blogcontent_ctt}
+        </ul>
+        <h2>About my blog</h2>
+        <p>Óò  Ãû£ºwww.yangqq.com ´´½¨ÓÚ2011Äê01ÔÂ12ÈÕ </p>
+        <p>·þÎñÆ÷£º°¢ÀïÔÆ·þÎñÆ÷<a href="https://promotion.aliyun.com/ntms/act/ambassador/sharetouser.html?userCode=8smrzoqa&amp;productCode=vm" target="_blank" class="blog_link">¹ºÂò¿Õ¼ä</a><a href="/jstt/web/2014-01-18/644.html" target="_blank" class="blog_link">²Î¿¼ÎÒµÄ¿Õ¼äÅäÖÃ</a></p>
+        <p>³Ì  Ðò£ºPHP µÛ¹úCMS7.0</p>
+
+
+    </div>
+      </div>
+      </aside>
+    </article>
+{/block}

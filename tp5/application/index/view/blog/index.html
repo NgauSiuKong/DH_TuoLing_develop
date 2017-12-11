@@ -1,0 +1,42 @@
+{extend name="base/base"}
+{block name="css"}
+    <link href="__HOME_STYLE__/css/learn.css" rel="stylesheet">
+    <link href="__HOME_STYLE__/css/about.css" rel="stylesheet">
+{/block}
+{block name="content"}
+<article>
+  <div class="container">
+    <h2 class="ctitle"><b>技术博客</b> <span>世上只有两种编程语言：一种是总是被人骂的，一种是从来没人用的</span></h2>
+     <div class="container">
+    <div class="banner">
+      <p data-scroll-reveal="enter top over 2s">单车欲问边，属国过居延</p>
+      <p data-scroll-reveal="enter left over 2s after 1s">征蓬出汉塞，归雁入胡天</p>
+      <p data-scroll-reveal="enter bottom over 2s after 2s">大漠孤烟直，长河落日圆。萧关逢候骑，都护在燕然</p>
+    </div>
+    <div class="memorial_day">
+      <div class="time_axis"></div>
+      <ul>
+    {foreach $time_axis as $val}
+        <li class="n{$val.class_tag}"><a href="/">{$val.title}</a>
+          <div class="dateview">{$val.createtime}</div>
+        </li>
+    {/foreach}
+      </ul>
+    </div>
+    <ul class="cbp_tmtimeline">
+    {foreach $blog_list as $val}
+      <li>
+        <time class="cbp_tmtime"><span>{$val.date}</span> <span>{$val.year}</span></time>
+        <div class="cbp_tmicon"></div>
+        <div class="cbp_tmlabel" data-scroll-reveal="enter right over 1s" >
+          <h2>{$val.bloginfo_title}</h2>
+          <p><span class="blogpic"><a href="{:url('content/index')}?bloginfo_id={$val.bloginfo_id}"><img src="__BLOG_IMG__/{$val.bloginfo_img}"></a></span>{$val.bloginfo_describe}</p>
+          <a href="{:url('content/index')}?bloginfo_id={$val.bloginfo_id}" target="_blank" class="readmore">查看更多&gt;&gt;</a> </div>
+      </li>
+    {/foreach}
+    </ul>
+    <div class="page"><a title="Total record"><b>107</b> </a><b>1</b><a href="/news/index_2.html">2</a><a href="/news/index_3.html">3</a><a href="/news/index_4.html">4</a><a href="/news/index_5.html">5</a><a href="/news/index_2.html">&gt;</a><a href="/news/index_5.html">&gt;&gt;</a></div>
+  </div>
+  </aside>
+</article>
+{/block}

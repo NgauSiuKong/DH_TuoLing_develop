@@ -1,0 +1,29 @@
+<?php
+namespace app\admin\controller;
+use think\Controller;
+use app\admin\model\Common as ModelCommon;
+//use \app\admin\model\Common;
+//分类管理控制器
+class Common extends Controller
+{
+    protected $MCommon;
+    public function _initialize()
+    {
+        $this->MCommon = new ModelCommon();
+    }
+    //文件上传类
+    //$file_name文件上传上来的字段
+    //$path 文件保存在uploads下的子目录,也就是最终目录
+    public function Uploads($file_name,$path)
+    {
+        $file = request()->file($file_name);
+        $info = $file->move(ROOT_PATH . 'public' . DS . 'uploads/'.$path."/");
+        if($info){
+            return $info->getSaveName();
+        }else{
+            echo $file->getError();
+            die('文件上传失败');
+        }
+    }
+
+}
