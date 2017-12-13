@@ -1,6 +1,7 @@
 <?php
 namespace app\admin\controller;
 use think\Controller;
+use think\Db;
 use app\admin\model\Common as ModelCommon;
 //use \app\admin\model\Common;
 //分类管理控制器
@@ -24,6 +25,15 @@ class Common extends Controller
             echo $file->getError();
             die('文件上传失败');
         }
+    }
+    //修改状态
+    public function modify_status($tablename,$id)
+    { 
+        $status_res = Db::name($tablename)
+        ->field($tablename.'_status')
+        ->where($tablename.'_id',$id)
+        ->find();
+        dump($status_res);
     }
 
 }

@@ -50,5 +50,55 @@ class Assortment extends Common
             return $this->fetch();
         }
     }
+    public function edit()
+    { 
+        //查看是否有post数据
+        if($_POST){ 
+            $data = input('post.');
+            $res_updateclass = Db::name('class')
+            ->update($data);
+            if($res_updateclass){ 
+                $this->success('SUCCESS',url('index'));
+            }else{ 
+                $this->error('ERROR');
+            }
+            return;
+        }
+        $class_id = input('get.class_id');
+        //查询分类信息
+        $class_info_sql = "select * from ns_class where class_id=".$class_id;
+        $class_info = Db::query($class_info_sql);
+        $class_info = $class_info[0];
+        $assortment_list = db('class')
+            ->field('class_id,class_fid,class_title')
+            ->order('class_oid desc')
+            ->select();
+        //无限分类排序
+        $assortment_list = $this->MCommon->recursionNoTree($assortment_list,'class_id','class_fid',0,0);
+        //无限分类标题拼接延伸符
+        $assortment_list = $this->MCommon->addStrForArr($assortment_list);
+        $this->assign('assortment_list',$assortment_list);
+        $this->assign('class_info',$class_info);
+        return $this->fetch();
+    }
+    public function delete()
+    { 
+        $class_id = input('get.class_id');
+        //查询此id下还有没有其他子分类,如果有自分类,则不可删除
+        $res_ifson = Db::name('class')->where('class_fid',$class_id)->field('class_id')->find();
+        if($res_ifson){$this->error('当前有子类，不能删除');die();}
+        $res_delete = Db::name('class')->delete($class_id);
+        if($res_delete){ 
+            $this->success('SUCCESS',url('index'));
+        }else{ 
+            $this->error('ERROR');
+        }
+    }
+    public function statusMod()
+    { 
+        $class_id = input('get.class_id');
+        $tablename = 'class';
+        $this->modify_status($tablename,$class_id);
+    }
 
 }

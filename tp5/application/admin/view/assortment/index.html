@@ -38,12 +38,12 @@
                             <tr>
                                 <td align="center">{$assortment.class_id}</td>
                                 <td>{$assortment.class_title}</td>
-                                <td align="center">{$assortment.class_status}</td>
+                                <td align="center"><a href="{:url('statusMod')}?class_id={$assortment.class_id}">{$assortment.class_status}</a></td>
                                 <td align="center">
-                                    <a href="/admin/user/edit/id/8.html" class="btn btn-primary btn-sm shiny">
+                                    <a href="{:url('edit')}?class_id={$assortment.class_id}" class="btn btn-primary btn-sm shiny">
                                         <i class="fa fa-edit"></i> 编辑
                                     </a>
-                                    <a href="#" onClick="warning('确实要删除吗', '/admin/user/del/id/8.html')" class="btn btn-danger btn-sm shiny">
+                                    <a href="{:url('delete')}?class_id={$assortment.class_id}" class="btn btn-danger btn-sm shiny">
                                         <i class="fa fa-trash-o"></i> 删除
                                     </a>
                                 </td>
