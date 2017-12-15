@@ -98,7 +98,12 @@ class Assortment extends Common
     { 
         $class_id = input('get.class_id');
         $tablename = 'class';
-        $this->modify_status($tablename,$class_id);
+        $res = $this->modify_status($tablename,$class_id);
+        if($res){ 
+            $this->redirect("Assortment/index");
+        }else{ 
+            return "<h1>修改失败,请联系管理员</h1>";
+        }
     }
 
 }

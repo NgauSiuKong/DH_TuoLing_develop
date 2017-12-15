@@ -74,5 +74,28 @@ class Homepage extends Common
         $this->assign('homepage_list',$homepage_list);
         return view();
     }
+    //
+    public function statusMod()
+    { 
+        dump($_REQUEST);
+        $homepage_id = input('get.homepage_id');
+        $tablename = 'homepage';
+        $res = $this->modify_status($tablename,$homepage_id);
+        if($res){ 
+            $this->redirect("index");
+        }else{ 
+            return "<h1>修改失败,请联系管理员</h1>";
+        }
+        /*
+        $class_id = input('get.class_id');
+        $tablename = 'class';
+        $res = $this->modify_status($tablename,$class_id);
+        if($res){ 
+            $this->redirect("Assortment/index");
+        }else{ 
+            return "<h1>修改失败,请联系管理员</h1>";
+        }
+        */
+    }
 
 }

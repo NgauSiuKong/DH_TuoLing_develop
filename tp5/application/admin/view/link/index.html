@@ -44,9 +44,9 @@
                                 <td align="center"><a href="{$val.link_url}">{$val.link_title}</a></td>
                                 <td align="center">{$val.link_url}</td>
                                 <td align="center">{$val.link_createtime}</td>
-                                <td align="center">{$val.link_status}</td>
+                                <td align="center"><a href="{:url('statusMod')}?link_id={$val.link_id}">{$val.link_status}</a></td>
                                 <td align="center">
-                                    <a href="/admin/user/edit/id/8.html" class="btn btn-primary btn-sm shiny">
+                                    <a href="{:url('edit')}?link_id={$val.link_id}" class="btn btn-primary btn-sm shiny">
                                         <i class="fa fa-edit"></i> 编辑
                                     </a>
                                     <a href="#" onClick="warning('确实要删除吗', '/admin/user/del/id/8.html')" class="btn btn-danger btn-sm shiny">

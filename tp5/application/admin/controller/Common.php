@@ -33,7 +33,24 @@ class Common extends Controller
         ->field($tablename.'_status')
         ->where($tablename.'_id',$id)
         ->find();
-        dump($status_res);
+        switch($status_res[$tablename."_status"])
+        { 
+            case "1":
+                $data[$tablename."_id"] = $id;
+                $data[$tablename."_status"] = 0;
+                $res = Db::name($tablename)->update($data);
+            break;
+            case "0":
+                $data[$tablename."_id"] = $id;
+                $data[$tablename."_status"] = 1;
+                $res = Db::name($tablename)->update($data);
+            break;
+        }
+        if($res){ 
+            return true;
+        }else{ 
+            return false;
+        }
     }
 
 }
